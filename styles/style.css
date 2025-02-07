@@ -15,7 +15,7 @@
 
 body {
 
-    background-image: url(./images/BG.png);
+    background-image: url(../images/BG.png);
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -46,6 +46,7 @@ header {
     justify-content: space-between;
     align-items: center;
     position: absolute;
+    z-index: 100;
 }
 
 .main-content {
@@ -120,7 +121,7 @@ header {
 .content-right {
     width: 870px;
     height: 100%;
-    background-image: url(./images/Image5.png);
+    background-image: url(../images/Image5.png);
 }
 
 /*
@@ -132,7 +133,7 @@ first-slide
     margin: 0;
     padding: 0;
     /* height: 100%; */
-    background-image: url(./images/Image1.png);
+    background-image: url(../images/Image1.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -159,7 +160,7 @@ main {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url(./images/Image1.png);
+    background-image: url(../images/Image1.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -176,7 +177,7 @@ main {
     right: 0;
     top: 0;
     height: 100%;
-    background-image: url(./images/Image5.png);
+    background-image: url(../images/Image5.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right center;
