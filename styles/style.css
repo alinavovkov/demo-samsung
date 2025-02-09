@@ -17,7 +17,7 @@
 
 /* Layout */
 body {
-    background-image: url(../images/bg.png);
+    background-image: url(../images/bg.webp);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
@@ -181,7 +181,7 @@ header img:first-child {
 
 /* .first-slide {
     width: 100%;
-    background-image: url(../images/image1.png);
+    background-image: url(../images/image1.webp);
     background-repeat: no-repeat;
     background-size: cover;
 } */
@@ -189,7 +189,7 @@ header img:first-child {
 .content-right {
     width: 870px;
     height: 100%;
-    /* background-image: url(../images/image5.png); */
+    /* background-image: url(../images/image5.webp); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right center;
