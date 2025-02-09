@@ -3,10 +3,83 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainText = document.querySelector('.content-main-txt');
     const buttonShop = document.querySelector('.content-shop-button');
     const textContent = mainText.innerHTML;
-    const firstSlide = document.querySelector('.first-slide');
     const contentDescription = document.querySelector('.content-description');
     const contentNavMenu = document.querySelector('.content-nav-menu');
     const bgLayer = document.querySelector('.bg-layer-img');
+
+    const slides = [
+        {
+            num: "1",
+            textDescription: "“The first time I used the Samsung Bespoke Jet™, I cried. I'm not being sensational; I really did. Of course, this vacuum worked great. But that's not all.”" + `<a href="./pages/readMore.html" class="content-description-read-more">Read more…</a>`,
+            photo: "../images/image1.png"
+        },
+        {
+            num: "2",
+            textDescription: "“If you're an over-cleaner, like myself, you'll nerd out on all of the functions. If you avoid this chore at all costs, you'll appreciate how simple Samsung makes it.”" + `<a href="./pages/readMore.html" class="content-description-read-more">Read more…</a>`,
+            photo: "../images/imageSlide2.png"
+        },
+        {
+            num: "3",
+            textDescription: "“Both the floor and pet hair attachments are cleverly designed to eliminate the dreaded hair wrap. (In other words, you'll never have to tackle hair tangles with a pair of scissors again.)”" + `<a href="./pages/readMore.html" class="content-description-read-more">Read more…</a>`,
+            photo: "../images/image3.png"
+        },
+        {
+            num: "4",
+            textDescription: "“When I learned the Samsung Bespoke Vac cleaned itself with amazing technology, that's when I cried. No more scraping spider legs and hair out of the crevices with my hands. Its suction power is so strong, the canister is left perfectly clean after every use. It's like a vacuum for your vacuum.”" + `<a href="./pages/readMore.html" class="content-description-read-more">Read more…</a>`,
+            photo: "../images/image4.png"
+        },
+        {
+            num: "5",
+            textDescription: "“Because it's so nice-looking, it can live right in the kitchen. No more hauling a vacuum up and down the basement stairs on the daily”" + `<a href="./pages/readMore.html" class="content-description-read-more">Read more…</a>`,
+            photo: "../images/image5.png"
+        }
+    ];
+
+
+    let currentSlide = 0;
+
+    const leftArrow = document.querySelector(".content-nav-menu img:first-child");
+    const rightArrow = document.querySelector(".content-nav-menu img:last-child");
+    const slideNumSpan = document.querySelector(".content-nav-menu span:first-of-type");
+    const descriptionText = document.querySelector(".content-description"); 
+    const slideImage = document.querySelector(".content-right"); 
+
+    leftArrow.addEventListener("click", () => {
+        if (currentSlide > 0) {
+            currentSlide--;
+            animateSlideChange();
+        }
+    });
+    
+    rightArrow.addEventListener("click", () => {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            animateSlideChange();
+        }
+    });
+    
+    function animateSlideChange() {
+        gsap.to([slideNumSpan, descriptionText], {
+            opacity: 0,
+            y: -10,
+            duration: 0.2,
+            onComplete: () => {
+                slideNumSpan.textContent = slides[currentSlide].num;
+                descriptionText.textContent = slides[currentSlide].textDescription;
+                slideImage.style.backgroundImage = `url(${slides[currentSlide].photo})`;
+               
+                if (currentSlide > 0) {
+                    gsap.to(bgLayer, { opacity: 0, duration: 0.3, onComplete: () => bgLayer.style.display = "none" });
+                }
+
+                gsap.fromTo([slideNumSpan, descriptionText, slideImage], 
+                    { y: 10, opacity: 0 }, 
+                    { y: 0, opacity: 1, duration: 0.2 }
+                );
+            }
+        })
+    }
+    
 
     mainText.innerHTML = textContent.split('<br>').map(line =>
         `<div class="text-line">${line}</div>`
@@ -77,11 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 1.3,
             ease: "power1.out",
         })
-        .to(contentDescription, {
+        .to([contentDescription, contentNavMenu], {
             x: 0,
             opacity: 1,
-            duration: 1,
-            ease: "power1.out"
+            duration: 1.2
         })
+
 
 });
