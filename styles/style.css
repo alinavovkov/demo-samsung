@@ -1,3 +1,4 @@
+/* Font imports */
 @font-face {
     font-family: 'samsungsharpsans-bold';
     src: url('./fonts/samsungsharpsans-bold.otf') format('opentype');
@@ -8,20 +9,19 @@
     src: url('./fonts/samsungsharpsans-medium.otf') format('opentype');
 }
 
+/* Reset */
 * {
     padding: 0;
     margin: 0;
 }
 
+/* Layout */
 body {
-
     background-image: url(../images/bg.png);
     background-repeat: no-repeat;
     background-size: cover;
-
     width: 100vw;
     height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,78 +32,133 @@ main {
     background-color: white;
     width: 1875px;
     height: 1049px;
-    display: flex;
-    flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 
+/* Header */
 header {
     width: 90%;
     height: 45px;
     margin: 68px 0 0 71px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: absolute;
     z-index: 100;
 }
 
-.main-content {
+header img:first-child {
+    will-change: transform, opacity;
+    position: relative;
+    visibility: visible;
+    transform-origin: center center;
+}
+
+.bg-layer {
     width: 100%;
     height: 100%;
-    margin: 0 auto;
-
+    position: absolute;
+    z-index: 1;
     display: flex;
-    flex-direction: row;
+    justify-content: flex-end;
+    overflow: hidden;
+
+
+    img {
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+/* Content Layout */
+.main-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
     justify-content: space-between;
 }
 
-.content {
+
+/* Content Area */
+
+/* .content {
     width: 40%;
     margin-left: 71px;
     display: flex;
     flex-direction: column;
     padding-top: 266px;
+} */
+
+.first-slide .content {
+    will-change: transform;
+    position: relative;
+    z-index: 2;
 }
 
+/* Text Styles */
 .content-main-txt {
     font-family: 'samsungsharpsans-bold';
     font-size: 50px;
     line-height: 64px;
+    overflow: hidden;
 }
 
 .content-main-txt-logo {
     height: 45px;
 }
 
+.text-line {
+    will-change: transform, opacity;
+    display: block;
+    position: relative;
+}
+
 .content-description {
     font-family: 'samsungsharpsans-medium';
-    line-height: 45px;
+    /* line-height: 45px; */
     font-size: 27px;
-    margin-top: 107px;
+    /* margin-top: 107px; */
     text-wrap: wrap;
+    /* position: relative; Ensures GSAP can move it */
+    /* top: 0; */
+}
 
-    a {
-        text-decoration: none;
-        cursor: pointer;
-    }
+.content-description a {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .content-description-read-more {
     color: #808080;
 }
 
+/* Navigation */
 .content-nav-menu {
     font-family: 'samsungsharpsans-medium';
     font-size: 32px;
     margin-top: 90px;
-
-    img {
-        cursor: pointer;
-    }
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
+.content-nav-menu img {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.content-nav-menu img:hover {
+    opacity: 0.7;
+}
+
+/* Button */
 .content-shop-button {
     border: 4px solid black;
     border-radius: 58px;
@@ -118,92 +173,54 @@ header {
     cursor: pointer;
 }
 
-.content-right {
-    width: 870px;
-    height: 100%;
-    background-image: url(../images/image5.png);
-}
-
-/*
-first-slide
-*/
-
-.first-slide {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    /* height: 100%; */
-    background-image: url(../images/image1.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 .first-slide-btn {
     margin-top: 380px;
 }
 
+/* Slides */
 
-/* Animation support styles */
-main {
-    overflow: hidden;
-    position: relative;
-}
-
-.main-content {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* .first-slide {
     width: 100%;
-    height: 100%;
-}
-
-.first-slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
     background-image: url(../images/image1.png);
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.first-slide .content {
-    will-change: transform;
-    position: relative;
-    z-index: 2;
-}
+} */
 
 .content-right {
-    will-change: transform, width;
-    position: absolute;
-    right: 0;
-    top: 0;
+    width: 870px;
     height: 100%;
     background-image: url(../images/image5.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right center;
-}
-
-/* Ensure smooth transitions */
-.main-content:not(.first-slide) {
-    visibility: hidden;
-    opacity: 0;
     position: absolute;
+    right: 0;
     top: 0;
-    left: 0;
+    padding: 0;
+    margin: 0;
+    will-change: transform, width;
 }
 
-/* Navigation styles */
+.second-slide,
+.content-description,
 .content-nav-menu {
+    width: 100%;
+    display: none;
+}
+
+.first-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    width: 40%;
+    margin-left: 71px;
     display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.content-nav-menu img {
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.content-nav-menu img:hover {
-    opacity: 0.7;
+    flex-direction: column;
+    padding-top: 266px;
+    position: relative;
+    z-index: 2;
+    will-change: transform;
 }
